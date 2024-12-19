@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Film Listesi</title>
+</head>
+<body>
+    <h1>::: Filmler :::</h1>
+    
+    <!-- Arama Formu -->
+    <form method="get" action="/katalog">
+        <input type="text" name="q" placeholder="Film adı veya yönetmen ara" value="{{ query }}">
+        <button type="submit">Ara</button>
+    </form>
+    
+    <hr>
+    
+    <!-- Film Listesi -->
+    {% if query %}
+        <h2>Arama Sonuçları</h2>
+        <ol>
+            {% if data %}
+                {% for film in data %}
+                    <li>{{ film.TITLE }} - {{ film.DIRECTOR }}</li>
+                {% endfor %}
+            {% else %}
+                <p>Aradığınız kriterlere uygun film bulunamadı.</p>
+            {% endif %}
+        </ol>
+    {% endif %}
+</body>
+</html>
